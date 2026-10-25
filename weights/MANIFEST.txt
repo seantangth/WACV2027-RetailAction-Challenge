@@ -1,0 +1,11 @@
+# Model weights for the final submission (BASE=s16). Download with download_weights.sh (Hugging Face: seantangth/WACV2027-RetailAction-Challenge-weights).
+# Every *.pt has a config.json next to it. SHA-256 checksums: SHA256SUMS.txt
+spatial_v4/model_ep{2,3,4}.pt, config.json   ConvNeXt-S + FPN heat-map model, crop 320 (ep2 also extracts the v4 hand features; ep2-4 used for fusion and per-frame heat maps)
+spatial_v5/model_ep3.pt, config.json         ConvNeXt-S + FPN, crop 416 (extracts the v5 hand features)
+b3_v1_heat/model.pt, config.json             backbone fine-tuned with a segment-level contact model (extracts the b3 hand features)
+temporal/tv4v5f_s{0..3}/model.pt             temporal Transformers on v5 features (train+val+test)
+temporal/tv4f_s{0,1}/model.pt                temporal Transformers on v4 features (train+val+test)
+temporal/tvb3f_s{0..3}/model.pt              temporal Transformers on b3 features (train+val+test; anchors for per-frame heat maps)
+temporal/tvb3_s{0..3}/model.pt               temporal Transformers on b3 features (train+val; used for fusion)
+rescorer/rescorer_final.{txt,json}           LightGBM rescorer (tweedie), trained on held-out test-split candidates
+rescorer/tsel_final.{txt,json}               LightGBM top-tier selector, trained on held-out test-split candidates

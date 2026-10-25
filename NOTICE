@@ -1,0 +1,5 @@
+The model weights distributed with this code (Hugging Face: seantangth/WACV2027-RetailAction-Challenge-weights) were trained on the
+RetailAction dataset. The RetailAction dataset is authored by Standard Cognition (Standard AI) and is used under the
+Standard AI RetailAction dataset license (https://huggingface.co/datasets/standard-cognition/RetailAction).
+Paper: Mazzini et al., "RetailAction: Dataset for Multi-View Spatio-Temporal Localization of Human-Object Interactions in Retail",
+ICCV 2025 Retail Vision Workshop. The dataset itself is not redistributed here.

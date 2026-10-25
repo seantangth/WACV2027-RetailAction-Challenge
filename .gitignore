@@ -1,0 +1,7 @@
+weights/*
+!weights/MANIFEST.txt
+!weights/SHA256SUMS.txt
+out/
+__pycache__/
+*.pyc
+prepare.sh
