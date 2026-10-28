@@ -1,7 +1,8 @@
 # RetailAction Challenge (PRAW @ WACV 2027) — inference code, team *seantangth*
 
-This repository reproduces our Kaggle submission **57463411** (public leaderboard **0.9955**) from the raw challenge videos
-with a single Docker command.
+This repository reproduces our two selected Kaggle submissions from the raw challenge videos, each with a single Docker
+command: **57504269** (our final result under the corrected challenge metric, 0.9167 on the private split; see below)
+and **57463411** (default command).
 It contains inference code only; the method is described in [`REPORT.md`](REPORT.md).
 
 ## Quick start
@@ -34,6 +35,7 @@ Optional environment variables (`docker run -e NAME=value`):
 | `WORKERS` | 8 | data-loader workers per step (16 used for verification) |
 | `START_STEP` | 1 | resume from step *k* (outputs of earlier steps must already be in `/out`) |
 | `AUG` | final configuration | JSON of the coverage-expansion settings used in step 8 |
+| `MODE` | `twotier` | `twotier`: steps 1–8 (submission 57463411). `normal`: steps 1–5 only; with `SCORE_POWER=0` this reproduces submission 57504269 (see below) |
 
 ## Pipeline (`run_inference.sh`)
 
@@ -53,6 +55,17 @@ Optional environment variables (`docker run -e NAME=value`):
 * Inference runs in fp16 on GPU, so results are not bit-identical across GPU models: on another GPU about 9 of the 100
   top-tier clips and ~3 % of clips' low-tier candidates differed, with no measurable change in score.
 * The official scorer's run time grows with the number of candidates; the final file has ~600k candidates (≈ 17 min to score on Kaggle).
+
+## Submission 57504269 (final result)
+
+Submission **57504269** is our final result under the corrected challenge metric (0.9167 on the private split). It uses
+steps 1–5 only, with the global rank of the rescorer prediction as the score, and is reproduced byte-for-byte (verified by
+MD5 from the same step-4 outputs) with:
+
+```bash
+docker run --gpus all --ipc=host --rm -e MODE=normal -e SCORE_POWER=0 -v /path/to/kaggle_data:/data:ro -v "$PWD/out_normal":/out rac-infer
+# -> out_normal/submission.csv  (~65k candidates, ~26 per clip; steps 6-8 are skipped)
+```
 
 ## Weights
 

@@ -2,7 +2,9 @@
 
 **Team**: seantangth · **Author**: Tze-Hsiang Tang (Independent Researcher)
 
-**Reproduced Kaggle submission**: **57463411**, public LB 0.9955 (`run_inference.sh`; command in `README.md`).
+**Final result (corrected challenge metric)**: submission **57504269**, 0.9167 on the private split (conventional confidence ranking, steps 1–5 of the pipeline; `MODE=normal SCORE_POWER=0`).
+
+**Reproduced Kaggle submissions**: 57504269 and 57463411 (`run_inference.sh`; commands in `README.md`).
 
 Numbers below are the held-out *test* split (2,272 annotated clips, 2,466 actions) unless marked LB (Kaggle public).
 
